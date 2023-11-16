@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Transparent Liquid
+  m_Name: Litmus
   m_Shader: {fileID: 4800000, guid: a99a91f140b31cd499ed5d815b5b72d2, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -28,12 +28,12 @@ Material:
     m_Floats:
     - _Amplitude: 0.15
     - _Freq: 8
-    - _Line: 0
-    - _LineSmooth: 0
-    - _RimPower: 0
+    - _Line: 0.0422
+    - _LineSmooth: 0.039
+    - _RimPower: 6.79
     m_Colors:
-    - _FoamColor: {r: 0.5943396, g: 0.5691082, b: 0.5691082, a: 0.40392157}
-    - _RimColor: {r: 0.7264151, g: 0.7161356, b: 0.7161356, a: 0.50980395}
-    - _Tint: {r: 0.3962264, g: 0.37566748, b: 0.37566748, a: 0.4745098}
-    - _TopColor: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 0.5176471}
+    - _FoamColor: {r: 0.8679245, g: 0.80446774, b: 0.741011, a: 0.40392157}
+    - _RimColor: {r: 1, g: 0.9756703, b: 0.9669811, a: 0.50980395}
+    - _Tint: {r: 0.05490195, g: 0.1689567, b: 0.6901961, a: 0.4745098}
+    - _TopColor: {r: 0.0352941, g: 0.1404599, b: 0.5764706, a: 0.5254902}
   m_BuildTextureStacks: []

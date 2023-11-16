@@ -6,6 +6,7 @@ using UnityEngine;
 public class VesselDrag : MonoBehaviour
 {
     private Rigidbody _rigidbody;
+    private bool _isHeld;
 
     private void Start()
     {
@@ -14,16 +15,22 @@ public class VesselDrag : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y,
-            -Camera.main.transform.position.z + transform.position.z);
-        Vector3 objPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        if (Camera.main != null)
+        {
+            var mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y,
+                -Camera.main.transform.position.z + transform.position.z);
+            var objPosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
-        transform.position = objPosition;
+            transform.position = objPosition;
+        }
+
         _rigidbody.isKinematic = true;
     }
 
+
     private void OnTriggerEnter(Collider other)
     {
+        
         var thisVessel = GetComponent<Vessel>();
         var otherVessel = other.gameObject.GetComponent<Vessel>();
 
@@ -37,13 +44,15 @@ public class VesselDrag : MonoBehaviour
         var otherChemicalComponent = GetChemicalComponent(otherTopMostLiquid);
 
 
-        //ApplyIndicator(otherTopMostLiquid, otherChemicalComponent, thisChemicalIndicator); //TODO fix indicators
+        ApplyIndicator(otherTopMostLiquid, otherChemicalComponent, thisChemicalIndicator);
+        if (_isHeld) return;
         AddLiquid(thisChemicalComponent, otherChemicalComponent, thisVessel, otherTopMostLiquid);
     }
 
     private static void ApplyIndicator(Liquid otherTopMostLiquid, ChemicalComponent otherChemicalComponent,
         ChemicalIndicator thisChemicalIndicator)
     {
+        if (thisChemicalIndicator == null) return;
         otherTopMostLiquid.SetChemicalMaterial(
             otherChemicalComponent.getReactionToIndicator(thisChemicalIndicator._enum));
         Debug.Log("indicator applied");
@@ -52,14 +61,20 @@ public class VesselDrag : MonoBehaviour
     private void OnMouseUp()
     {
         _rigidbody.isKinematic = false;
+        _isHeld = false;
     }
 
-    private Liquid GetTopMostLiquid(List<Liquid> liquids)
+    private void OnMouseDown()
     {
-        return liquids.Any() ? liquids.Last() : null;
+        _isHeld = true;
     }
 
-    private ChemicalComponent GetChemicalComponent(Liquid liquid)
+    private static Liquid GetTopMostLiquid(List<Liquid> liquids)
+    {
+        return liquids.Any() ? liquids[0] : null;
+    }
+
+    private static ChemicalComponent GetChemicalComponent(Liquid liquid)
     {
         try
         {
@@ -73,7 +88,7 @@ public class VesselDrag : MonoBehaviour
         return null;
     }
 
-    private ChemicalIndicator GetChemicalIndicator(Liquid liquid)
+    private static ChemicalIndicator GetChemicalIndicator(Liquid liquid)
     {
         try
         {
@@ -87,7 +102,7 @@ public class VesselDrag : MonoBehaviour
         return null;
     }
 
-    private void AddLiquid(ChemicalComponent thisChemicalComponent, ChemicalComponent otherChemicalComponent,
+    private static void AddLiquid(ChemicalComponent thisChemicalComponent, ChemicalComponent otherChemicalComponent,
         Vessel thisVessel, Liquid otherTopMostLiquid)
     {
         if (thisChemicalComponent == otherChemicalComponent) return;

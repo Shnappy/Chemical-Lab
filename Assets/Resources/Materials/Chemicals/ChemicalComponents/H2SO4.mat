@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Phenolphthalein_base
+  m_Name: H2SO4
   m_Shader: {fileID: 4800000, guid: a99a91f140b31cd499ed5d815b5b72d2, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -28,12 +28,12 @@ Material:
     m_Floats:
     - _Amplitude: 0.15
     - _Freq: 8
-    - _Line: 0
-    - _LineSmooth: 0
-    - _RimPower: 0
+    - _Line: 0.0176
+    - _LineSmooth: 0.017
+    - _RimPower: 1.86
     m_Colors:
-    - _FoamColor: {r: 0.068399385, g: 0.016687429, b: 0.14150941, a: 0.40392157}
-    - _RimColor: {r: 0.31132078, g: 0.039649345, b: 0.25546312, a: 0.50980395}
-    - _Tint: {r: 0.18867922, g: 0, b: 0.16672888, a: 0.4745098}
-    - _TopColor: {r: 0.14036041, g: 0.049661797, b: 0.33962262, a: 0.5254902}
+    - _FoamColor: {r: 1, g: 1, b: 1, a: 1}
+    - _RimColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Tint: {r: 0.6603774, g: 0.4140558, b: 0.22739409, a: 0.4745098}
+    - _TopColor: {r: 0.6792453, g: 0.41596025, b: 0.06728373, a: 0.5176471}
   m_BuildTextureStacks: []

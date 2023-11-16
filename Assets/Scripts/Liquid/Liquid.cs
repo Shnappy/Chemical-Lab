@@ -42,7 +42,7 @@ public class Liquid : MonoBehaviour
     {
         rend.material = material;
     }
-    
+
     private void Start()
     {
         chemicalComponent = GetComponent<ChemicalComponent>();
@@ -85,49 +85,64 @@ public class Liquid : MonoBehaviour
 
         if (deltaTime != 0)
         {
-            // decrease wobble over time
-            _wobbleAmountToAddX = Mathf.Lerp(_wobbleAmountToAddX, 0, (deltaTime * recovery));
-            _wobbleAmountToAddZ = Mathf.Lerp(_wobbleAmountToAddZ, 0, (deltaTime * recovery));
-
-
-            // make a sine wave of the decreasing wobble
-            _pulse = 2 * Mathf.PI * wobbleSpeedMove;
-            _sinewave = Mathf.Lerp(_sinewave, Mathf.Sin(_pulse * _time),
-                deltaTime * Mathf.Clamp(_velocity.magnitude + _angularVelocity.magnitude, thickness, 10));
-
-            _wobbleAmountX = _wobbleAmountToAddX * _sinewave;
-            _wobbleAmountZ = _wobbleAmountToAddZ * _sinewave;
-
-
-            // velocity
-            _velocity = (_lastPos - transform.position) / deltaTime;
-
-            _angularVelocity = GetAngularVelocity(_lastRot, transform.rotation);
-
-            // add clamped velocity to wobble
-            _wobbleAmountToAddX +=
-                Mathf.Clamp((_velocity.x + (_velocity.y * 0.2f) + _angularVelocity.z + _angularVelocity.y) * maxWobble,
-                    -maxWobble, maxWobble);
-            _wobbleAmountToAddZ +=
-                Mathf.Clamp((_velocity.z + (_velocity.y * 0.2f) + _angularVelocity.x + _angularVelocity.y) * maxWobble,
-                    -maxWobble, maxWobble);
+            HandleWobble(deltaTime);
+            HandleSineWave(deltaTime);
+            HandleVelocity(deltaTime);
+            AddClampedVelocity();
         }
 
-        // send it to the shader
-        rend.sharedMaterial.SetFloat("_WobbleX", _wobbleAmountX);
-        rend.sharedMaterial.SetFloat("_WobbleZ", _wobbleAmountZ);
-
-        // set fill amount
+        UpdateShader();
         UpdatePos(deltaTime);
+        HandleLastPosition();
+    }
 
-        // keep last position
+    private void HandleLastPosition()
+    {
         _lastPos = transform.position;
         _lastRot = transform.rotation;
     }
 
-    void UpdatePos(float deltaTime)
+    private void UpdateShader()
     {
-        Vector3 worldPos =
+        rend.sharedMaterial.SetFloat("_WobbleX", _wobbleAmountX);
+        rend.sharedMaterial.SetFloat("_WobbleZ", _wobbleAmountZ);
+    }
+
+    private void HandleWobble(float deltaTime)
+    {
+        _wobbleAmountToAddX = Mathf.Lerp(_wobbleAmountToAddX, 0, (deltaTime * recovery));
+        _wobbleAmountToAddZ = Mathf.Lerp(_wobbleAmountToAddZ, 0, (deltaTime * recovery));
+    }
+
+    private void HandleSineWave(float deltaTime)
+    {
+        _pulse = 2 * Mathf.PI * wobbleSpeedMove;
+        _sinewave = Mathf.Lerp(_sinewave, Mathf.Sin(_pulse * _time),
+            deltaTime * Mathf.Clamp(_velocity.magnitude + _angularVelocity.magnitude, thickness, 10));
+
+        _wobbleAmountX = _wobbleAmountToAddX * _sinewave;
+        _wobbleAmountZ = _wobbleAmountToAddZ * _sinewave;
+    }
+
+    private void HandleVelocity(float deltaTime)
+    {
+        _velocity = (_lastPos - transform.position) / deltaTime;
+        _angularVelocity = GetAngularVelocity(_lastRot, transform.rotation);
+    }
+
+    private void AddClampedVelocity()
+    {
+        _wobbleAmountToAddX +=
+            Mathf.Clamp((_velocity.x + (_velocity.y * 0.2f) + _angularVelocity.z + _angularVelocity.y) * maxWobble,
+                -maxWobble, maxWobble);
+        _wobbleAmountToAddZ +=
+            Mathf.Clamp((_velocity.z + (_velocity.y * 0.2f) + _angularVelocity.x + _angularVelocity.y) * maxWobble,
+                -maxWobble, maxWobble);
+    }
+
+    private void UpdatePos(float deltaTime)
+    {
+        var worldPos =
             transform.TransformPoint(new Vector3(mesh.bounds.center.x, mesh.bounds.center.y, mesh.bounds.center.z));
         if (compensateShapeAmount > 0)
         {
