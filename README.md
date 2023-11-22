@@ -8,7 +8,9 @@ various chemical ingredients.
 
 >Important! All the colors of chemical compositions are made-up and only serve for the purpose of demonstration
 
-### Features
+
+Features
+========
 
 1. Physical simulation of chemical compositions
 
@@ -44,7 +46,9 @@ chemical reaction, but it should be trivial to add more.
 Every single chemical component contains a reaction to the indicators that are set on the right side of the lab. Adding an indicator
 will change the color of the liquid stored within a vessel.
 
-### TODO
+
+TODO
+====
 
 1. Add visualization of liquid stacking.
 2. Add proper chemical reactions (might need a chemical formulae calcualator implementation).
