@@ -2,10 +2,13 @@
 # Chemical Lab
 
 Welcome to ***Chemical Lab*** repo!  
-This readme tells about what this project is, what are the features available and what are the future plans for it. 
+
+This is a tiny chem lab simulation project which uses Unity game engine to visualize various reactions between
+various chemical ingredients.
 
 >Important! All the colors of chemical compositions are made-up and only serve for the purpose of demonstration
-###Features
+
+##Features
 
 1. Physical simulation of chemical compositions
 
@@ -33,10 +36,6 @@ properties assigned to it are preserved, and hence it can be used for further in
 All of chemical reactions are described in **ChemicalReactions** class. Currently, for the purpose of demo it contains just one
 chemical reaction, but it should be trivial to add more.
 
-Химические взаимодействия могут привести к реакции. При переливании элемента или раствора из одного сосуда в другой идёт проверка
-на реакцию между ними. Все реакции описаны в классе  (для демонстрации концепта там описана лишь одна реакция).
-В случае если элемента не реагируют друг с другом, в сосуде появляется только что добавленная жидкость, что отражается в названии последнего.
-
 3. Indicators
 
 ![](/Screenshots/3.jpg)
@@ -45,7 +44,7 @@ chemical reaction, but it should be trivial to add more.
 Every single chemical component contains a reaction to the indicators that are set on the right side of the lab. Adding an indicator
 will change the color of the liquid stored within a vessel.
 
-###TODO
+##TODO
 
 1. Add visualization of liquid stacking.
 2. Add proper chemical reactions (might need a chemical formulae calcualator implementation).
