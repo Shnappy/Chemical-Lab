@@ -365,6 +365,21 @@ MonoBehaviour:
   _rectionToLitmus: {fileID: 0}
   _rectionToPhenolphthalein: {fileID: 2100000, guid: 8d493de52ecb627449e81e1d9f54afba, type: 2}
   _reactionToMethylOrange: {fileID: 0}
+--- !u!114 &292591505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292591498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e647ecc854c56db47b00d97398683a6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chemicalIndicatorName: 
+  _material: {fileID: 0}
+  _enum: 0
 --- !u!1 &331821207 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2194324028412304753, guid: a98c09c5959466148a8d7aa4154ad96b, type: 3}
@@ -748,8 +763,23 @@ MonoBehaviour:
   _material: {fileID: 2100000, guid: 3bbee37628dddcd4490625da58845a6b, type: 2}
   _enum: 9
   _rectionToLitmus: {fileID: 0}
-  _rectionToPhenolphthalein: {fileID: 2100000, guid: 8d493de52ecb627449e81e1d9f54afba, type: 2}
+  _rectionToPhenolphthalein: {fileID: 0}
   _reactionToMethylOrange: {fileID: 0}
+--- !u!114 &653169108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653169101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e647ecc854c56db47b00d97398683a6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chemicalIndicatorName: 
+  _material: {fileID: 0}
+  _enum: 2
 --- !u!114 &665242997 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6954574196193658883, guid: a98c09c5959466148a8d7aa4154ad96b, type: 3}
@@ -1203,6 +1233,10 @@ PrefabInstance:
       propertyPath: displayName
       value: 
       objectReference: {fileID: 364612519}
+    - target: {fileID: 5103811146275572395, guid: a98c09c5959466148a8d7aa4154ad96b, type: 3}
+      propertyPath: ChemicalIndicator
+      value: 
+      objectReference: {fileID: 292591505}
     - target: {fileID: 5103811146275572395, guid: a98c09c5959466148a8d7aa4154ad96b, type: 3}
       propertyPath: chemicalComponent
       value: 
@@ -1918,6 +1952,10 @@ PrefabInstance:
       propertyPath: displayName
       value: 
       objectReference: {fileID: 151341031}
+    - target: {fileID: 5103811146275572395, guid: a98c09c5959466148a8d7aa4154ad96b, type: 3}
+      propertyPath: ChemicalIndicator
+      value: 
+      objectReference: {fileID: 653169108}
     - target: {fileID: 5103811146275572395, guid: a98c09c5959466148a8d7aa4154ad96b, type: 3}
       propertyPath: chemicalComponent
       value: 
