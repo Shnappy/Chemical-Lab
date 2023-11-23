@@ -15,9 +15,9 @@ Features
 1. Physical simulation of chemical compositions
 
 ![](/Screenshots/1.jpg)
->default lab set-up
+>Default lab set-up
 
-Simulation is being done with the us of **Liquid** and **ChemicalComponent** classes. 
+Simulation is being done with the use of **Liquid** and **ChemicalComponent** classes. 
 
 **Liquid** class describes the physical behaviour of a liquid within a container. To make a more realistic liquid of a certain
 liquid such parameters as thickness, max wobble and wobble speed move can be changed for a specific chemical element/composition.
